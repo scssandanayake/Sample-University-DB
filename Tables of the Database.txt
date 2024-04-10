@@ -1,0 +1,449 @@
+Tables of the Database:
+[module, faculty, payment, extracurricular, gate (PK tables)]
+
+
+
+-- Create the 'Module' table --
+
+create table Module (
+    Module_Id VARCHAR(10) PRIMARY KEY,
+    Module_name VARCHAR(100) NOT NULL
+);
+
+INSERT INTO Module (Module_Id, Module_name)
+	VALUES('Pusl2018', 'Statistics'),
+	VALUES('Pusl2019', 'Programming in Java'),
+	VALUES('Pusl2020', 'Programming in C'),
+	VALUES('Pusl2021', 'Civil Law'),
+	VALUES('Pusl2022', 'Data programming in R'),
+	VALUES('Pusl2023', 'Information management and retrival'),
+	VALUES('Pusl2024', 'Interior design'),
+	VALUES('Pusl2025', 'Civil engineering'),
+	VALUES('Pusl2026', 'Bussiness statistics'),
+	VALUES('Pusl2027', 'Biomedical science');
+
+
+
+-- Create the 'Faculty' table --
+
+create table Faculty (
+    Faculty_Id VARCHAR(10) PRIMARY KEY,
+    Faculty_Name VARCHAR(100) NOT NULL
+);
+
+INSERT INTO Faculty (Faculty_Id, Faculty_Name) 
+VALUES ('F001', 'Faculty of Computing'),
+VALUES ('F002', 'Faculty of Engineering'),
+VALUES ('F003', 'Faculty of Bussiness'),
+VALUES ('F004', 'Faculty of Science'),
+VALUES ('F005', 'Faculty of Medical Sciences'),
+VALUES ('F006', 'Faculty of Law'),
+VALUES ('F007', 'Faculty of Agriculture'),
+VALUES ('F008', 'Faculty of Art'),
+VALUES ('F009', 'Faculty of Psychology'),
+VALUES ('F010', 'Faculty of Social Sciences');
+
+
+
+
+-- Create the 'Payment' table --
+
+create table Payment (
+    Payment_ID INT PRIMARY KEY,
+    Payment_Date DATE NOT NULL,
+    Payment_Method VARCHAR(20) NOT NULL
+);
+
+INSERT INTO Payment (Payment_ID, Payment_Date, Payment_Method) 
+VALUES (6789, '2023-12-23', 'Card'),
+VALUES (6790, '2023-11-24', 'Cash'),
+VALUES (6791, '2023-09-25', 'Card'),
+VALUES (6792, '2023-08-26', 'Card'),
+VALUES (6793, '2023-07-27', 'Cash'),
+VALUES (6794, '2023-06-28', 'Cash'),
+VALUES (6795, '2023-05-29', 'Card'),
+VALUES (6796, '2023-04-30', 'Card'),
+VALUES (6797, '2023-03-31', 'Cash'),
+VALUES (6798, '2023-02-01', 'Cash');
+
+
+
+-- Create the 'Extracurricular' table --
+
+create table Extracurricular (
+    Extracurricular_ID VARCHAR(20) PRIMARY KEY,
+    Extracurricular_Location VARCHAR(100) NOT NULL
+);
+
+INSERT INTO Extracurricular (Extracurricular_ID, Extracurricular_Location) 
+VALUES ('Exc010', 'Faculty'),
+VALUES ('Exc011', 'Faculty'),
+VALUES ('Exc012', 'Faculty'),
+VALUES ('Exc013', 'Faculty'),
+VALUES ('Exc014', 'Faculty'),
+VALUES ('Exc015', 'Faculty'),
+VALUES ('Exc016', 'Faculty'),
+VALUES ('Exc017', 'Faculty'),
+VALUES ('Exc018', 'Faculty'),
+VALUES ('Exc019', 'Faculty'),
+VALUES ('Exc020', 'Ground'),
+VALUES ('Exc021', 'Ground'),
+VALUES ('Exc022', 'Ground'),
+VALUES ('Exc023', 'Ground'),
+VALUES ('Exc024', 'Ground'),
+VALUES ('Exc025', 'Ground'),
+VALUES ('Exc026', 'Ground'),
+VALUES ('Exc027', 'Ground'),
+VALUES ('Exc028', 'Ground'),
+VALUES ('Exc029', 'Ground');
+
+
+
+
+
+-- Create the 'Gate' table --
+
+create table Gate (
+    Gate_ID VARCHAR(10) PRIMARY KEY,
+    G_in_Time TIME NOT NULL,
+    G_out_Time TIME NOT NULL
+);
+
+INSERT INTO Gate (Gate_ID, G_in_Time, G_out_Time) 
+VALUES ('G001', '08:05:00', '17:05:00'),
+VALUES ('G002', '08:15:00', '17:10:00'),
+VALUES ('G001', '08:25:00', '17:15:00'),
+VALUES ('G002', '08:35:00', '17:20:00'),
+VALUES ('G001', '08:45:00', '17:25:00'),
+VALUES ('G002', '08:55:00', '17:30:00'),
+VALUES ('G001', '08:40:00', '17:35:00'),
+VALUES ('G001', '08:20:00', '17:40:00'),
+VALUES ('G002', '08:30:00', '17:45:00'),
+VALUES ('G002', '08:50:00', '17:50:00');
+
+
+
+
+-- Create the 'Student' table --
+
+create table Student (
+    Student_id INT PRIMARY KEY,
+    First_Name VARCHAR(100) NOT NULL,
+    Last_Name VARCHAR(100) NOT NULL,
+    Phone_NO VARCHAR(10) NOT NULL,
+    Email VARCHAR(100) NOT NULL,
+    User_Name VARCHAR(50) NOT NULL,
+    Password VARCHAR(15) NOT NULL,
+    Degree_Id VARCHAR(10),
+    CONSTRAINT fk_Degree FOREIGN KEY (Degree_Id) REFERENCES Degree(DegreeId)
+);
+
+INSERT INTO Student (Student_id, First_Name, Last_Name, Phone_NO, Email, User_Name, Password, Degree_Id),
+VALUES (23466, 'Malith', 'Bandara', '0713440346', 'malith@student.ac.lk', 'Malith123', 'Mnn344', 'Pusl4667'),
+VALUES (23467, 'Chamara', 'Sandanayake', '0773440346', 'chamara@student.ac.lk', 'Chamara123', 'Mnn345', 'Pusl4668'),
+VALUES (23468, 'Gosisa', 'Jinasena', '0763440346', 'gosisa@student.ac.lk', 'Gosisa123', 'Mnn346', 'Pusl4669'),
+VALUES (23469, 'Naveen', 'Fernando', '0783440346', 'naveen@student.ac.lk', 'Naveen123', 'Mnn347', 'Pusl4670'),
+VALUES (23470, 'Yasiru', 'Nimnath', '0753440346', 'yasiru@student.ac.lk', 'Yasiru123', 'Mnn348', 'Pusl4671'),
+VALUES (23471, 'Malindu', 'Konara', '0723440346', 'malindu@student.ac.lk', 'Malindu123', 'Mnn349', 'Pusl4672'),
+VALUES (23472, 'Yasith', 'Ariyawansha', '0713540546', 'yasith@student.ac.lk', 'Yasith123', 'Mnn350', 'Pusl4673'),
+VALUES (23473, 'Pramod', 'Madushan', '0715600346', 'pramod@student.ac.lk', 'Pramod123', 'Mnn351', 'Pusl4674'),
+VALUES (23474, 'Kasun', 'Alahakoon', '0773450355', 'kasun@student.ac.lk', 'Kasun123', 'Mnn352', 'Pusl4675'),
+VALUES (23475, 'Malka', 'Ranesh', '0783440046', 'malka@student.ac.lk',
+'Malka123', 'Mnn353', 'Pusl4676');
+
+
+
+-- Create the 'Examination' table --
+
+create table Examination (
+    Exam_ID INT PRIMARY KEY,
+    Exam_Date DATE NOT NULL,
+    Module_id VARCHAR(10),
+    CONSTRAINT fk_Module FOREIGN KEY (Module_id) REFERENCES Module(Module_Id)
+);
+
+INSERT INTO Examination (Exam_ID, Exam_Date, Module_id) 
+VALUES (2345, '2024-10-23', 'Pusl2018'),
+VALUES (2346, '2024-10-24', 'Pusl2019'),
+VALUES (2347, '2024-10-23', 'Pusl2020'),
+VALUES (2348, '2024-10-25', 'Pusl2021'),
+VALUES (2349, '2024-10-23', 'Pusl2022'),
+VALUES (2350, '2024-10-24', 'Pusl2023'),
+VALUES (2351, '2024-10-23', 'Pusl2024'),
+VALUES (2352, '2024-10-25', 'Pusl2025'),
+VALUES (2353, '2024-10-23', 'Pusl2026'),
+VALUES (2354, '2024-10-24', 'Pusl2027');
+
+
+
+-- Create the 'Student_Examination' table --
+
+create table Student_Examination (
+    Student_ID INT,
+    Exam_Id INT,
+    PRIMARY KEY (Student_ID, Exam_Id),
+    CONSTRAINT fk_Student FOREIGN KEY (Student_ID) REFERENCES Student(Student_id),
+    CONSTRAINT fk_Examination FOREIGN KEY (Exam_Id) REFERENCES Examination(Exam_ID)
+);
+
+INSERT INTO Student_Examination (Student_ID, Exam_Id)
+VALUES (23466, 2345),
+VALUES (23467, 2346),
+VALUES (23468, 2348),
+VALUES (23469, 2347),
+VALUES (23470, 2349),
+VALUES (23471, 2348),
+VALUES (23472, 2349),
+VALUES (23473, 2346),
+VALUES (23474, 2345),
+VALUES (23475, 2347);
+
+
+
+-- Create the 'Department' table --
+
+create table Department (
+    Department_ID VARCHAR(10) PRIMARY KEY,
+    Department_Name VARCHAR(100) NOT NULL,
+    Faculty_iD VARCHAR(10),
+    CONSTRAINT fk_Faculty FOREIGN KEY (Faculty_iD) REFERENCES Faculty(Faculty_iD)
+);
+
+INSERT INTO Department (Department_ID, Department_Name, Faculty_iD)
+VALUES ('D456', 'Computer science', 'F001'),
+VALUES ('D457', 'Data science', 'F001'),
+VALUES ('D458', 'Networking', 'F001'),
+VALUES ('D459', 'Computer Security', 'F001'),
+VALUES ('D460', 'Software Engineering', 'F001'),
+VALUES ('D461', 'Civil Engineering', 'F002'),
+VALUES ('D462', 'Electrical Engineering', 'F002'),
+VALUES ('D463', 'Logistic', 'F003'),
+VALUES ('D464', 'Hospitality Management', 'F003'),
+VALUES ('D465', 'Biomedical Engineering', 'F004');
+
+
+
+-- Create the 'Lecture' table --
+
+create table Lecture (
+    Lecture_ID VARCHAR(10) PRIMARY KEY,
+    Lecture_Name VARCHAR(100) NOT NULL,
+    Lecture_Email VARCHAR(100) NOT NULL,	
+    Department_ID VARCHAR(10),
+    CONSTRAINT fk_Department FOREIGN KEY (Department_ID) REFERENCES Department(Department_ID)
+);
+
+INSERT INTO Lecture (Lecture_ID, Lecture_Name, Lecture_Email, Department_ID)
+VALUES ('L0134', 'Mr. Kushan', 'kushan@lecturer.ac.lk','D456'),
+VALUES ('L0135', 'Mr. Dammika', 'dammika@lecturer.ac.lk','D456'),
+VALUES ('L0136', 'Mr. Malith', 'malith@lecturer.ac.lk','D456'),
+VALUES ('L0137', 'Mr. Samantha', 'samantha@lecturer.ac.lk','D456'),
+VALUES ('L0138', 'Mr. Kushan', 'kushan@lecturer.ac.lk','D457'),
+VALUES ('L0139', 'Mr. Priyan', 'priyan@lecturer.ac.lk','D457'),
+VALUES ('L0140', 'Mr. Peries', 'peries@lecturer.ac.lk','D458'),
+VALUES ('L0141', 'Mr. Perera', 'perera@lecturer.ac.lk','D458'),
+VALUES ('L0142', 'Mr. Bandara', 'bandara@lecturer.ac.lk','D459'),
+VALUES ('L0143', 'Mr. Priyantha', 'ptiyantha@lecturer.ac.lk','D459');
+
+
+
+
+-- Create the 'Module_Lecture' table --
+
+create table Module_Lecture (
+    Lecture_ID VARCHAR(10),
+    Module_ID VARCHAR(10),
+    PRIMARY KEY (Lecture_ID, Module_ID),
+    CONSTRAINT fk_Lecture FOREIGN KEY (Lecture_ID) REFERENCES Lecture(Lecture_ID),
+    CONSTRAINT fk_Module FOREIGN KEY (Module_ID) REFERENCES Module(Module_Id)
+);
+
+INSERT INTO Module_Lecture (Lecture_ID, Module_ID) 
+VALUES ('L0134', 'Pusl2018'),
+VALUES ('L0135', 'Pusl2019'),
+VALUES ('L0136', 'Pusl2020'),
+VALUES ('L0137', 'Pusl2021'),
+VALUES ('L0138', 'Pusl2022'),
+VALUES ('L0139', 'Pusl2023'),
+VALUES ('L0140', 'Pusl2024'),
+VALUES ('L0141', 'Pusl2025'),
+VALUES ('L0142', 'Pusl2026'),
+VALUES ('L0143', 'Pusl2027');
+
+
+
+-- Create the 'Degree' table --
+
+create table Degree (
+    Degree_ID VARCHAR(20) PRIMARY KEY,
+    Degree_Name VARCHAR(100) NOT NULL,
+    Offered_University VARCHAR(100) NOT NULL,
+    Faculty_Id VARCHAR(10),
+    CONSTRAINT fk_Faculty FOREIGN KEY (Faculty_Id) REFERENCES Faculty(Faculty_Id)
+);
+
+INSERT INTO Degree (Degree_ID, Degree_Name, Offered_University, Faculty_Id)
+VALUES ('Pusl4667', 'Bachelor of computer science', 'University of Plymouth', 'F001'),
+VALUES ('Pusl4668', 'Bachelor of data science', 'University of Plymouth', 'F001'),
+VALUES ('Pusl4669', 'Bachelor of networking', 'University of Plymouth', 'F001'),
+VALUES ('Pusl4670', 'Bachelor of computer security', 'University of Plymouth', 'F001'),
+VALUES ('Pusl4671', 'Bachelor of software engineering', 'University of Plymouth', 'F001'),
+VALUES ('Pusl4672', 'Bachelor of civil engeneering', 'University of Plymouth', 'F002'),
+VALUES ('Pusl4673', 'Bachelor of electrical engeneering', 'University of Plymouth', 'F002'),
+VALUES ('Pusl4674', 'Bachelor of robotics engeneering', 'University of Plymouth', 'F002'),
+VALUES ('Pusl4675', 'Bachelor of bussiness studies', 'University of Plymouth', 'F003'),
+VALUES ('Pusl4676', 'Bachelor of logistic management', 'University of Plymouth', 'F003');
+
+
+
+
+-- Create the 'Payment_Degree' table --
+
+create table Payment_Degree (
+    Payment_ID INT,
+    Degree_ID VARCHAR(20),
+    Student_ID INT,
+    PRIMARY KEY (Payment_ID, Degree_ID, Student_ID)
+    CONSTRAINT fk_Payment FOREIGN KEY (Payment_ID) REFERENCES Payment(Payment_ID),
+    CONSTRAINT fk_Degree FOREIGN KEY (Degree_ID) REFERENCES Degree(Degree_ID),
+    CONSTRAINT fk_Student FOREIGN KEY (Student_ID) REFERENCES Student(Student_id),
+);
+
+INSERT INTO Payment_Degree (Payment_ID, Degree_ID, Student_ID) 
+VALUES (6789, 'Pusl4667', 23466),
+VALUES (6790, 'Pusl4668', 23467),
+VALUES (6791, 'Pusl4669', 23468),
+VALUES (6792, 'Pusl4670', 23469),
+VALUES (6793, 'Pusl4671', 23470),
+VALUES (6794, 'Pusl4672', 23471),
+VALUES (6795, 'Pusl4673', 23472),
+VALUES (6796, 'Pusl4674', 23473),
+VALUES (6797, 'Pusl4675', 23474),
+VALUES (6798, 'Pusl4676', 23475);
+
+
+
+
+-- Create the 'Student_Extracurricular' table --
+
+create table Student_Extracurricular (
+    Student_ID INT,
+    Extracurricular_ID VARCHAR(20),
+    PRIMARY KEY (Student_ID, Extracurricular_ID)
+    CONSTRAINT fk_Student FOREIGN KEY (Student_ID) REFERENCES Student(Student_id),
+    CONSTRAINT fk_Extracurricular FOREIGN KEY (Extracurricular_ID) REFERENCES Extracurricular(Extracurricular_ID),
+);
+
+INSERT INTO Student_Extracurricular (Student_ID, Extracurricular_ID) 
+VALUES (23466, 'Exc010'),
+VALUES (23467, 'Exc011'),
+VALUES (23468, 'Exc012'),
+VALUES (23469, 'Exc013'),
+VALUES (23470, 'Exc014'),
+VALUES (23471, 'Exc015'),
+VALUES (23472, 'Exc016'),
+VALUES (23473, 'Exc017'),
+VALUES (23474, 'Exc018'),
+VALUES (23475, 'Exc019');
+
+
+
+
+-- Create the 'Clubs' table --
+
+create table Clubs (
+    Club_Name VARCHAR(100) NOT NULL,
+    Club_Type VARCHAR(100) NOT NULL,
+    Extracurricular_ID VARCHAR(20),
+    PRIMARY KEY (Extracurricular_ID),
+    CONSTRAINT fk_Extracurricular FOREIGN KEY (Extracurricular_ID) REFERENCES Extracurricular(Extracurricular_ID)
+);
+
+INSERT INTO Clubs (Club_Name, Club_Type, Extracurricular_ID) 
+VALUES ('FOSS', 'computing', 'Exc010'),
+VALUES ('IEEE', 'engineering', 'Exc011'),
+VALUES ('AISEC', 'leadership', 'Exc012'),
+VALUES ('LEO', 'CSR', 'Exc013'),
+VALUES ('Rotract', 'CSR', 'Exc014'),
+VALUES ('CSSL', 'computing', 'Exc015'),
+VALUES ('ISACA', 'computing', 'Exc016'),
+VALUES ('Marketing Circle', 'bussiness', 'Exc017'),
+VALUES ('ECOBE', 'bussiness', 'Exc018'),
+VALUES ('Music', 'art', 'Exc019');
+
+
+
+-- Create the 'Sports' table --
+
+create table Sports (
+    Sport_Name VARCHAR(100) NOT NULL,
+    Sport_Type VARCHAR(100) NOT NULL,
+    Extracurricular_ID VARCHAR(20),
+    PRIMARY KEY (Extracurricular_ID),
+    CONSTRAINT fk_Extracurricular FOREIGN KEY (Extracurricular_ID) REFERENCES Extracurricular(Extracurricular_ID)
+);
+
+INSERT INTO Sports (Sport_Name, Sport_Type, Extracurricular_ID)
+VALUES ('Foot ball', 'Team', 'Exc020'),
+VALUES ('Swimming', 'Team', 'Exc021'),
+VALUES ('Cricket', 'Team', 'Exc022'),
+VALUES ('Vollyball', 'Team', 'Exc023'),
+VALUES ('Ruger', 'Team', 'Exc024'),
+VALUES ('Chess', 'Team', 'Exc025'),
+VALUES ('Carrom', 'Team', 'Exc026'),
+VALUES ('Basketball', 'Team', 'Exc027'),
+VALUES ('Netball', 'Team', 'Exc028'),
+VALUES ('Boxing', 'Team', 'Exc029');
+
+
+
+-- Create the 'Student_Gate' table --
+
+create table Student_Gate (
+    Student_ID INT,
+    Gate_ID VARCHAR(10),
+    PRIMARY KEY (Student_ID, Gate_ID),
+    CONSTRAINT fk_Student FOREIGN KEY (Student_ID) REFERENCES Student(Student_id),
+    CONSTRAINT fk_Gate FOREIGN KEY (Gate_ID) REFERENCES Gate(Gate_ID)
+);
+
+INSERT INTO Student_Gate (Student_ID, Gate_ID) 
+VALUES (23466, 'G001'),
+VALUES (23467, 'G002'),
+VALUES (23468, 'G001'),
+VALUES (23469, 'G002'),
+VALUES (23470, 'G001'),
+VALUES (23471, 'G002'),
+VALUES (23472, 'G001'),
+VALUES (23473, 'G001'),
+VALUES (23474, 'G002'),
+VALUES (23475, 'G002');
+
+
+
+
+-- Create the 'Hostel' table --
+
+create table Hostel (
+    Room_ID VARCHAR(10) PRIMARY KEY,
+    H_In_Time TIME NOT NULL,
+    H_Out_Time TIME NOT NULL,
+    Student_ID INT,
+    CONSTRAINT fk_Student FOREIGN KEY (Student_ID) REFERENCES Student(Student_id)
+);
+
+INSERT INTO Hostel (Room_ID, H_In_Time, H_Out_Time, Student_ID) 
+VALUES ('H001', '17:20:00', '08:35:00', 23466),
+VALUES ('H002', '17:35:00', '08:30:00', 23467),
+VALUES ('H003', '17:40:00', '08:40:00', 23468),
+VALUES ('H004', '17:45:00', '08:25:00', 23469),
+VALUES ('H005', '19:30:00', '08:30:00', 23470),
+VALUES ('H006', '18:30:00', '08:45:00', 23471),
+VALUES ('H007', '17:50:00', '08:55:00', 23472),
+VALUES ('H008', '19:35:00', '08:30:00', 23473),
+VALUES ('H009', '17:55:00', '08:50:00', 23474),
+VALUES ('H010', '17:30:00', '08:20:00', 23475);
+
+
+
+
